@@ -2,17 +2,18 @@ package com.cltech.hrms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cltech.hrms.bean.Education;
 import com.cltech.hrms.bean.Employee;
-import com.cltech.hrms.bean.Experience;
 import com.cltech.hrms.bean.ResponseBean;
+import com.cltech.hrms.bean.common.DataTableRequestBean;
+import com.cltech.hrms.bean.common.GridDatatableRequestBean;
 import com.cltech.hrms.service.impl.EmployeeServiceImpl;
 
 @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
@@ -29,40 +30,28 @@ public class EmployeeController {
 		return employeeService.saveEmployee(employee);
 		
 	}
-
-	public ResponseBean updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		return null;
+	@PostMapping(path = "updateEmployee")
+	@ResponseBody
+	public ResponseBean updateEmployee(@RequestBody Employee employee) {
+	     return employeeService.updateEmployee(employee);
 	}
 
 	@PostMapping(path = "/getAllEmployee")
-	public ResponseBean getAllEmployee() {
-		return employeeService.getAllEmployee();
+	public ResponseBean getAllEmployee(@RequestBody GridDatatableRequestBean gridDatatableRequestBean) {
+		return employeeService.getAllEmployee(gridDatatableRequestBean);
 
 	}
-
-	public ResponseBean getEmployeeById(Long id) {
-
-		return null;
+	
+	@RequestMapping(value="getAllEmployees" ,method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseBean getAllEmployees(@RequestBody DataTableRequestBean dataTableRequestBean)  {
+		return employeeService.getAllEmployees(dataTableRequestBean);
 	}
 
-	public ResponseBean getEmployeeByEducation(Education education) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(path ="/getEmployeeById/{ID}" )
+	public ResponseBean getEmployeeById(@PathVariable("ID") Long id) {
+		 return employeeService.getEmployeeById(id);
 	}
 
-	public ResponseBean getEmployeeByEducation(Long educationId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ResponseBean getEmployeeByExperience(Experience experience) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ResponseBean getEmployeeByExperience(Long experienceId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

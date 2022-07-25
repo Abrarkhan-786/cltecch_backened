@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class Employee implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	Long id;
 
 	@Column
 	String carrierObjective; // allowed character 256 or 512

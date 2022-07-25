@@ -1,28 +1,23 @@
 package com.cltech.hrms.service;
 
-import org.springframework.stereotype.Service;
-
-import com.cltech.hrms.bean.Education;
 import com.cltech.hrms.bean.Employee;
-import com.cltech.hrms.bean.Experience;
 import com.cltech.hrms.bean.ResponseBean;
+import com.cltech.hrms.bean.common.DataTableRequestBean;
+import com.cltech.hrms.bean.common.GridDatatableRequestBean;
 
 public interface EmployeeService {
 
-	ResponseBean saveEmployee(Employee employee);
+	public ResponseBean saveEmployee(Employee employee);
 
-	ResponseBean updateEmployee(Employee employee);
+	public ResponseBean updateEmployee(Employee employee);
 
-	ResponseBean getAllEmployee();
+	public ResponseBean getAllEmployee( GridDatatableRequestBean gridDatatableRequestBean);
 
-	ResponseBean getEmployeeById(Long id);
+	public ResponseBean getEmployeeById(Long id);
 
-	ResponseBean getEmployeeByEducation(Education education);
+	public ResponseBean getAllEmployees(DataTableRequestBean dataTableRequestBean);
 
-	ResponseBean getEmployeeByEducation(Long educationId);
 
-	ResponseBean getEmployeeByExperience(Experience experience);
 
-	ResponseBean getEmployeeByExperience(Long experienceId);
 
 }
