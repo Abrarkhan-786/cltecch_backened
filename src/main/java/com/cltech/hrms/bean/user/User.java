@@ -1,14 +1,15 @@
 package com.cltech.hrms.bean.user;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "user")
@@ -24,10 +25,39 @@ public class User {
     @Transient
     private String passwordConfirm;
 
-//    @ManyToMany
-//    private Set<Role> roles;
+    private String role;
+    private Long roleId;
+    
+    private String  deparmentIds;
+    
+    
+    private String  returnUrl;
+    
+    public long getRoleId() {
+		return roleId;
+	}
 
-    public Long getId() {
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
+	}
+
+	private String  departments;
+    
+    @Transient
+    private List<Department> department;
+    
+    @JsonProperty
+	private boolean isActive;
+
+    public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -60,11 +90,49 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
+	public String getReturnUrl() {
+		return returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
+	}
+
+	public String getDeparmentIds() {
+		return deparmentIds;
+	}
+
+	public void setDeparmentIds(String deparmentIds) {
+		this.deparmentIds = deparmentIds;
+	}
+
+	public String getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(String departments) {
+		this.departments = departments;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public List<Department> getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(List<Department> department) {
+		this.department = department;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+
 }

@@ -6,21 +6,17 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.cltech.hrms.bean.Education;
 import com.cltech.hrms.bean.ResponseBean;
 import com.cltech.hrms.constant.Status;
 import com.cltech.hrms.repository.EducationRepository;
-import com.cltech.hrms.service.PropertyService;
 
 @Service
 public class EducationServiceImpl {
 
-	@Autowired
-	@Qualifier("propertyServiceImpl")
-	protected PropertyService propertyService;
+	
 
 	private static Logger LOGGER = LogManager.getLogger(EducationServiceImpl.class);
 

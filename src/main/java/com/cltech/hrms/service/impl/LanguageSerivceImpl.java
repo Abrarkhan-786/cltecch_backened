@@ -1,27 +1,22 @@
 package com.cltech.hrms.service.impl;
 
-import org.springframework.stereotype.Service;
-
-import com.cltech.hrms.bean.Language;
-import com.cltech.hrms.bean.ResponseBean;
-import com.cltech.hrms.constant.Status;
-import com.cltech.hrms.repository.LanguageRepository;
-import com.cltech.hrms.service.PropertyService;
-
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.cltech.hrms.bean.Language;
+import com.cltech.hrms.bean.ResponseBean;
+import com.cltech.hrms.constant.Status;
+import com.cltech.hrms.repository.LanguageRepository;
 
 @Service
 public class LanguageSerivceImpl {
 
-	@Autowired
-	@Qualifier("propertyServiceImpl")
-	protected PropertyService propertyService;
+	
 
 	private static Logger LOGGER = LogManager.getLogger(LanguageSerivceImpl.class);
 

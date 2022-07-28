@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cltech.hrms.bean.ResponseBean;
+import com.cltech.hrms.bean.common.DataTableRequestBean;
 import com.cltech.hrms.bean.user.Department;
 import com.cltech.hrms.service.user.DepartmentService;
 
@@ -23,26 +24,29 @@ public class DepartmentController {
 	@Qualifier("departmentServiceImpl")
 	DepartmentService departmentService;
 
-	@PostMapping("/saveDepartmentDetails")
+	@PostMapping("/saveDepartment")
 	public ResponseBean addDepartment(@RequestBody Department department) {
 		return departmentService.saveDepartment(department);
 	}
 
-	@GetMapping("/getAllDepartment")
-	public ResponseBean getAllDepartmentDetails() {
+	@GetMapping("/getAllDepartments")
+	public ResponseBean getAllDepartment() {
 		return departmentService.getAllDepartment();
 	}
 
-	@GetMapping("/getDepartmentDetailsById/{ID}")
+	@GetMapping("/getDepartmentById/{ID}")
 	public ResponseBean getById(@PathVariable("ID") Long id) {
 		return departmentService.getDepartmentById(id);
 	}
 
-	@PutMapping("/updateDepartment")
+	@PostMapping("/updateDepartment")
 	public ResponseBean updateDepartment(@RequestBody Department department) {
 		return departmentService.updateDepartment(department);
 	}
-
 	
+	@PostMapping("/getAllDepartmentGrid")
+	public ResponseBean updateDepartment(@RequestBody DataTableRequestBean dataTableRequestBean) {
+		return departmentService.getAllDepartmentGrid(dataTableRequestBean);
+	}
 
 }

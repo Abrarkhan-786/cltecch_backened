@@ -75,5 +75,9 @@ public class Employee implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL )
 	@JoinColumn(name="socialMediaLinkId")
 	SocialMedialLinks socialMediaLinks;
+	
+	@OneToMany(cascade = CascadeType.ALL )
+	@JoinColumn(name="employeeId")
+	List<Post> posts;
 
 }

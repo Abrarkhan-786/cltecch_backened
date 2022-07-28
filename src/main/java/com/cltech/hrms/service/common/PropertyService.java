@@ -1,4 +1,4 @@
-package com.cltech.hrms.service;
+package com.cltech.hrms.service.common;
 
 public interface PropertyService {
 	public String getAppProperty(String code);

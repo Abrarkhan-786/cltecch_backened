@@ -17,7 +17,7 @@ public class EmployeeBean implements Serializable {
 	private String name;
 	private String email;
 	private String phone;
-	
+	private String departmentName;
 	
 	
 	public EmployeeBean() {
@@ -26,7 +26,7 @@ public class EmployeeBean implements Serializable {
 
 
 
-	public EmployeeBean(Long id, double totalExperience, String totalSkill, String name, String email, String phone) {
+	public EmployeeBean(Long id, double totalExperience, String totalSkill, String name, String email, String phone,String departmentName) {
 		super();
 		this.id = id;
 		this.totalExperience = totalExperience;
@@ -34,6 +34,7 @@ public class EmployeeBean implements Serializable {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
+		this.departmentName=departmentName;
 	}
 
 

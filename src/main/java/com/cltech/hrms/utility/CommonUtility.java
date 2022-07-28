@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.cltech.hrms.constant.GlobalConstant;
-import com.cltech.hrms.service.PropertyService;
+import com.cltech.hrms.service.common.PropertyService;
 
 public class CommonUtility {
 	

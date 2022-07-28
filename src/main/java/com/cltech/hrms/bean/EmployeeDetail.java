@@ -57,8 +57,7 @@ public class EmployeeDetail implements Serializable {
 	@Column
 	private String dob;
 	
-//	@OneToOne
-//	@JoinColumn(name="employee_id")
-//	private Employee employee;
+	@OneToOne(mappedBy = "employeeDetail")
+    private Employee employee;
 
 }

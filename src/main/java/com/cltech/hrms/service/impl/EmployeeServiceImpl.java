@@ -1,6 +1,7 @@
 package com.cltech.hrms.service.impl;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -12,11 +13,9 @@ import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.cltech.hrms.bean.Employee;
@@ -27,14 +26,18 @@ import com.cltech.hrms.bean.common.DataTableResponseBean;
 import com.cltech.hrms.bean.common.EmployeeBean;
 import com.cltech.hrms.bean.common.GridDataResponseBean;
 import com.cltech.hrms.bean.common.GridDatatableRequestBean;
+import com.cltech.hrms.bean.user.User;
 import com.cltech.hrms.constant.MessageConstant;
 import com.cltech.hrms.constant.Status;
 import com.cltech.hrms.repository.EmployeeRepository;
+import com.cltech.hrms.repository.PostRepository;
+import com.cltech.hrms.repository.user.UserRepository;
 import com.cltech.hrms.service.EmployeeService;
+import com.cltech.hrms.service.common.impl.BaseServiceImpl;
 import com.cltech.hrms.utility.CommonUtility;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeService {
 	private static Logger LOGGER = LogManager.getLogger(EmployeeServiceImpl.class);
 
 	protected final String SORT_DIRECTION_ASC = "ASC";
@@ -42,6 +45,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+    private UserRepository userRepository;
+	
+	@Autowired
+    private PostRepository postRepository;
+	
 
 	@Override
 	@Transactional
@@ -161,10 +171,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 								.by(dataTableRequestBean.getOrder().get(0).getDir().equalsIgnoreCase(SORT_DIRECTION_ASC)
 										? Sort.Direction.ASC
 										: Sort.Direction.DESC, dataTableRequestBean.getSortableColumn()));
-					List<EmployeeBean> allEmployees = employeeRepository.getAllEmployees(dataTableRequestBean.getSearchText(),
-							 page);
+				
+				
+				List<Long> departmentsIds=null; 
+				if(dataTableRequestBean.getExtraParam()!=null && !dataTableRequestBean.getExtraParam().trim().equals("") ) {
+					User findUserByEmail = userRepository.findUserByEmail(dataTableRequestBean.getExtraParam());
+					if(findUserByEmail!=null && findUserByEmail.getDeparmentIds()!=null) {
+						 List<String> asList = Arrays.asList(findUserByEmail.getDeparmentIds().split(","));
+						 departmentsIds = asList.stream().map(element->{
+							 return Long.parseLong(element);
+						 }).collect(Collectors.toList());
+					}
+				}
+				
+				     List<Long> findListOfEmployesIdByListOfIds = postRepository.findListOfEmployesIdByListOfIds(departmentsIds);
+				     List<EmployeeBean> allEmployees = employeeRepository.getAllEmployees(dataTableRequestBean.getSearchText(),findListOfEmployesIdByListOfIds,page);
 					//@Param("column") String column,dataTableRequestBean.getSortableColumn(),
-					long count = employeeRepository.count();
+					long count = employeeRepository.getAllEmployeeCount(dataTableRequestBean.getSearchText());
 					long filteredSize=0;
 					if(dataTableRequestBean.getSearchText() != null && !dataTableRequestBean.getSearchText().trim().equals("") ) {
 					 filteredSize=allEmployees.size();
@@ -186,7 +209,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 	}
-	
 	
 	public double  calculateExperienceInYear(String sDate,String eDate) {
 		try {

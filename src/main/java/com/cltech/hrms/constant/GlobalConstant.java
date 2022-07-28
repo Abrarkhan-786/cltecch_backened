@@ -66,4 +66,16 @@ public class GlobalConstant {
 	
 	public static final String ALLOWED_DECIMAL_POINTS="allowed.decimal.points";
 	public static final String EXCEL_TYPE="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+	
+	public static final String ROLE_ADMIN="role.admin";
+	public static final String ROLE_ADMIN_ID="role.admin.id";
+	public static final String ROLE_RECRUITER="role.recruiter";
+	public static final String ROLE_RECRUITER_ID="role.recruiter.id";
+	public static final String ROLE_EMPLOYEE="role.employee";
+	public static final String ROLE_EMPLOYEE_ID="role.employee.id";
+	public static final String RECRUITER_RETURN_URL="recruiter.return.url";
+	public static final String EMPLOYEE_RETURN_URL="employee.return.url";
+	public static final String ADMIN_RETURN_URL="admin.return.url";
+	
+
 }

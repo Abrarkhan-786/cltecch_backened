@@ -1,4 +1,4 @@
-package com.cltech.hrms.service;
+package com.cltech.hrms.service.common.impl;
 
 import java.util.Locale;
 
@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+
+import com.cltech.hrms.service.common.PropertyService;
+
 
 @Service
 @Qualifier("propertyServiceImpl")
