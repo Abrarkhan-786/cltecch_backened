@@ -1,5 +1,6 @@
 com\cltech\hrms\bean\ResponseBean$ResponseBeanBuilder.class
 com\cltech\hrms\bean\Address.class
+com\cltech\hrms\repository\PostRepository.class
 com\cltech\hrms\bean\Language.class
 com\cltech\hrms\constant\GlobalConstant.class
 com\cltech\hrms\exception\ResourceEmptyException.class
@@ -8,6 +9,7 @@ com\cltech\hrms\bean\common\EmployeeBean.class
 com\cltech\hrms\bean\Education.class
 com\cltech\hrms\bean\Skill.class
 com\cltech\hrms\service\user\DepartmentService.class
+com\cltech\hrms\bean\common\PostBean.class
 com\cltech\hrms\controller\EmployeeController.class
 com\cltech\hrms\exception\NotReadableException.class
 com\cltech\hrms\security\user\UserDetailsServiceImpl.class
@@ -47,6 +49,7 @@ com\cltech\hrms\service\common\impl\PropertyServiceImpl.class
 com\cltech\hrms\utility\dataTable\Column.class
 com\cltech\hrms\service\impl\EmployeeServiceImpl.class
 com\cltech\hrms\bean\common\DataTableResponseBean.class
+com\cltech\hrms\bean\common\PostBean$PostBeanBuilder.class
 com\cltech\hrms\bean\Experience.class
 com\cltech\hrms\repository\user\DepartmentRepository.class
 com\cltech\hrms\bean\common\GridDatatableRequestBean.class

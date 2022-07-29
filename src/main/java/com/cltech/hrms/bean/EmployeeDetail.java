@@ -20,10 +20,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeDetail implements Serializable {
@@ -57,7 +60,7 @@ public class EmployeeDetail implements Serializable {
 	@Column
 	private String dob;
 	
-	@OneToOne(mappedBy = "employeeDetail")
-    private Employee employee;
+//	@OneToOne(mappedBy = "employeeDetail")
+//    private Employee employee;
 
 }

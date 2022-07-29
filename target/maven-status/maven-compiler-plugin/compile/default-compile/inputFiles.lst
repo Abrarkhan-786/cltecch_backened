@@ -40,6 +40,7 @@ D:\dev\cltech-backened\src\main\java\com\cltech\hrms\config\SwaggerConfig.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\security\user\UserDetailsServiceImpl.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\service\user\impl\UserServiceImpl.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\utility\FilterType.java
+D:\dev\cltech-backened\src\main\java\com\cltech\hrms\repository\PostRepository.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\utility\dataTable\Column.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\service\user\UserService.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\repository\EmployeeRepository.java
@@ -47,6 +48,7 @@ D:\dev\cltech-backened\src\main\java\com\cltech\hrms\controller\EmployeeControll
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\exception\ResourceNotFoundException.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\exception\ResourceEmptyException.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\service\user\DepartmentService.java
+D:\dev\cltech-backened\src\main\java\com\cltech\hrms\bean\common\PostBean.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\constant\Status.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\bean\EmployeeDetail.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\repository\EmployeeDetailRepository.java
