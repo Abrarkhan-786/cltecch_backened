@@ -58,9 +58,9 @@ public class EmployeeDetail implements Serializable {
 	private String alternatePhone;
 	
 	@Column
-	private String dob;
+	private String gender;
 	
-//	@OneToOne(mappedBy = "employeeDetail")
-//    private Employee employee;
+	@Column
+	private String dob;
 
 }

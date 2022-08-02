@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.cltech.hrms.bean.ResponseBean;
 import com.cltech.hrms.bean.common.DataTableRequestBean;
 import com.cltech.hrms.bean.common.DataTableResponseBean;
+import com.cltech.hrms.bean.common.DepartmentBean;
 import com.cltech.hrms.bean.user.Department;
 import com.cltech.hrms.constant.MessageConstant;
 import com.cltech.hrms.constant.Status;
@@ -143,7 +144,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public ResponseBean getAllDepartment() {
 		try {
-			List<Department> findAll = departmentRepo.findAll();
+			List<DepartmentBean> findAll = departmentRepo.findAllDepartment();
 			if(!findAll.isEmpty()) {
 				return ResponseBean.builder().status(Status.SUCCESS)
 						.response(findAll)

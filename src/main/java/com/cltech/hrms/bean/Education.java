@@ -30,6 +30,9 @@ public class Education  implements Serializable{
 	private String schoolName;
 	
 	@Column
+	private String degree;
+	
+	@Column
 	private String fieldOfStudy;
 	
 	

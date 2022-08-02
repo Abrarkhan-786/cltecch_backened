@@ -22,11 +22,13 @@ com\cltech\hrms\repository\EducationRepository.class
 com\cltech\hrms\service\user\impl\RoleServiceImpl.class
 com\cltech\hrms\utility\CommonUtility.class
 com\cltech\hrms\service\user\RoleService.class
+com\cltech\hrms\bean\common\DepartmentBean$DepartmentBeanBuilder.class
 com\cltech\hrms\utility\dataTable\Search.class
 com\cltech\hrms\repository\SkillRepository.class
 com\cltech\hrms\service\EmployeeService.class
 com\cltech\hrms\bean\common\GridDataResponseBean$GridDataResponseBeanBuilder.class
 com\cltech\hrms\bean\common\DataTableRequestBean.class
+com\cltech\hrms\bean\common\DepartmentBean.class
 com\cltech\hrms\service\common\BaseService.class
 com\cltech\hrms\repository\EmployeeRepository.class
 com\cltech\hrms\service\EducationService.class

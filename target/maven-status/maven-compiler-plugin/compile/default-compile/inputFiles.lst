@@ -53,6 +53,7 @@ D:\dev\cltech-backened\src\main\java\com\cltech\hrms\constant\Status.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\bean\EmployeeDetail.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\repository\EmployeeDetailRepository.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\bean\common\DataTableRequestBean.java
+D:\dev\cltech-backened\src\main\java\com\cltech\hrms\bean\common\DepartmentBean.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\service\impl\LanguageSerivceImpl.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\security\user\CustomUserDetails.java
 D:\dev\cltech-backened\src\main\java\com\cltech\hrms\bean\Address.java
