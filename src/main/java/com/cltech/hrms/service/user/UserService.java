@@ -14,4 +14,8 @@ public interface UserService {
 	public ResponseBean  getAllUser(DataTableRequestBean dataTableRequestBean);
 	public ResponseBean  findById(long id);
 	public ResponseBean  updateUserDepartment(User user);
+	public ResponseBean getAllRegisterUser(DataTableRequestBean dataTableRequestBean);
+	public ResponseBean updateProfile(User user);
+	public ResponseBean resetPassword(User user);
+	public ResponseBean getDashBoardData();
 }

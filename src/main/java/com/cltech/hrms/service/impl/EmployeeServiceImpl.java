@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 
 import com.cltech.hrms.bean.Employee;
 import com.cltech.hrms.bean.Experience;
+import com.cltech.hrms.bean.GroupMaster;
+import com.cltech.hrms.bean.Post;
 import com.cltech.hrms.bean.ResponseBean;
 import com.cltech.hrms.bean.common.DataTableRequestBean;
 import com.cltech.hrms.bean.common.DataTableResponseBean;
@@ -27,9 +29,11 @@ import com.cltech.hrms.bean.common.EmployeeBean;
 import com.cltech.hrms.bean.common.GridDataResponseBean;
 import com.cltech.hrms.bean.common.GridDatatableRequestBean;
 import com.cltech.hrms.bean.user.User;
+import com.cltech.hrms.constant.GlobalConstant;
 import com.cltech.hrms.constant.MessageConstant;
 import com.cltech.hrms.constant.Status;
 import com.cltech.hrms.repository.EmployeeRepository;
+import com.cltech.hrms.repository.GroupMasterRepository;
 import com.cltech.hrms.repository.PostRepository;
 import com.cltech.hrms.repository.user.UserRepository;
 import com.cltech.hrms.service.EmployeeService;
@@ -52,6 +56,9 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 	@Autowired
     private PostRepository postRepository;
 	
+	@Autowired
+	private GroupMasterRepository groupMasterRepo;
+	
 
 	@Override
 	@Transactional
@@ -71,6 +78,13 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 				}
 				employee.setTotalExperience(totalExperience);
 			}
+			
+           if (employee.getPosts() != null && !employee.getPosts().isEmpty()) {
+        	   String postString = String.join(", ",
+   					employee.getPosts().stream().map(Post::getDepartmentName).collect(Collectors.toList()));
+				employee.setLookingFor(postString);
+			}
+
 
 			Employee employeeBean = employeeRepository.save(employee);
 			return ResponseBean.builder().status(Status.SUCCESS).message("Record Added Succesfully")
@@ -107,6 +121,13 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 				}
 				employee.setTotalExperience(totalExperience);
 			}
+			
+			if (employee.getPosts() != null && !employee.getPosts().isEmpty()) {
+	        	   String postString = String.join(", ",
+	   					employee.getPosts().stream().map(Post::getDepartmentName).collect(Collectors.toList()));
+					employee.setLookingFor(postString);
+				}
+
 			Employee employeeBean = employeeRepository.save(employee);
 			return ResponseBean.builder().status(Status.SUCCESS).message("Record updated Succesfully")
 					.response(employeeBean).build();
@@ -187,7 +208,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 				     List<Long> findListOfEmployesIdByListOfIds = postRepository.findListOfEmployesIdByListOfIds(departmentsIds);
 				     List<EmployeeBean> allEmployees = employeeRepository.getAllEmployees(dataTableRequestBean.getSearchText(),findListOfEmployesIdByListOfIds,page);
 					//@Param("column") String column,dataTableRequestBean.getSortableColumn(),
-					long count = employeeRepository.getAllEmployeeCount(dataTableRequestBean.getSearchText());
+					long count = employeeRepository.getAllEmployeeCount(dataTableRequestBean.getSearchText(),findListOfEmployesIdByListOfIds);
 					long filteredSize=0;
 					if(dataTableRequestBean.getSearchText() != null && !dataTableRequestBean.getSearchText().trim().equals("") ) {
 					 filteredSize=allEmployees.size();
@@ -229,5 +250,120 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 		}
 		
 	}
+	
+	@Override
+	public ResponseBean getAllEmployeesForAdmin(DataTableRequestBean dataTableRequestBean) {
+		try {
+			if (dataTableRequestBean != null) {
+
+				dataTableRequestBean.setSearchText(dataTableRequestBean.getSearch().getValue());
+				dataTableRequestBean.setSortableColumn(dataTableRequestBean.getColumns()
+						.get(dataTableRequestBean.getOrder().get(0).getColumn()).getName());
+				
+				if(dataTableRequestBean.getLength()==-1) {
+					dataTableRequestBean.setLength(Integer.MAX_VALUE);
+				}
+
+				Pageable page = PageRequest.of(dataTableRequestBean.getStart(), dataTableRequestBean.getLength())
+						.withSort(Sort
+								.by(dataTableRequestBean.getOrder().get(0).getDir().equalsIgnoreCase(SORT_DIRECTION_ASC)
+										? Sort.Direction.ASC
+										: Sort.Direction.DESC, dataTableRequestBean.getSortableColumn()));
+				
+				     List<EmployeeBean> allEmployees = employeeRepository.getAllEmployeesForAdmin(dataTableRequestBean.getSearchText(),page);
+					//@Param("column") String column,dataTableRequestBean.getSortableColumn(),
+					long count = employeeRepository.getAllEmployeeCountForAdmin(dataTableRequestBean.getSearchText());
+					long filteredSize=0;
+					if(dataTableRequestBean.getSearchText() != null && !dataTableRequestBean.getSearchText().trim().equals("") ) {
+					 filteredSize=allEmployees.size();
+					 }else {
+					 filteredSize=count;
+					 }
+					return ResponseBean.builder().status(Status.SUCCESS)
+							.response(DataTableResponseBean.<EmployeeBean>builder().draw(dataTableRequestBean.getDraw())
+									.recordsTotal((int) count).recordsFiltered(filteredSize)
+									.data(allEmployees).build())
+							.build();
+					
+			}
+			return ResponseBean.builder().status(Status.FAIL).message(MessageConstant.RECORD_NOT_FOUND).build();
+
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseBean.builder().status(Status.FAIL).message(MessageConstant.SOMETHING_WENT_WRONG).build();
+		}
+
+	}
+
+	@Override
+	public ResponseBean updateEmployeeResumeStatus(Employee employee) {
+		try {
+			if (employee.getId() == null) {
+				return ResponseBean.builder().message("please provid Id").status(Status.FAIL).build();
+			}
+			GroupMaster groupMasterByGroupName = groupMasterRepo.getGroupMasterByCode(employee.getResumeStatusCode());
+			if(groupMasterByGroupName==null) {
+				return ResponseBean.builder().status(Status.FAIL).message(MessageConstant.RECORD_NOT_FOUND).build();
+			}
+			Optional<Employee> findById = employeeRepository.findById(employee.getId());
+			if (!findById.isPresent()) {
+				return ResponseBean.builder().message("please provid valid Id").status(Status.FAIL).build();
+			}
+			findById.get().setResumeStatusCode(employee.getResumeStatusCode());
+			findById.get().setResumeStatusValue(groupMasterByGroupName.getValue());
+			Employee employeeBean = employeeRepository.save(findById.get());
+			return ResponseBean.builder().response(employeeBean).status(Status.SUCCESS).build();
+
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseBean.builder().message(MessageConstant.SOMETHING_WENT_WRONG).status(Status.FAIL).build();
+		}
+	
+	}
+	
+	@Override
+	public ResponseBean getAllSelectedApplicantReport(DataTableRequestBean dataTableRequestBean) {
+		try {
+			if (dataTableRequestBean != null) {
+
+				dataTableRequestBean.setSearchText(dataTableRequestBean.getSearch().getValue());
+				dataTableRequestBean.setSortableColumn(dataTableRequestBean.getColumns()
+						.get(dataTableRequestBean.getOrder().get(0).getColumn()).getName());
+				
+				if(dataTableRequestBean.getLength()==-1) {
+					dataTableRequestBean.setLength(Integer.MAX_VALUE);
+				}
+
+				Pageable page = PageRequest.of(dataTableRequestBean.getStart(), dataTableRequestBean.getLength())
+						.withSort(Sort
+								.by(dataTableRequestBean.getOrder().get(0).getDir().equalsIgnoreCase(SORT_DIRECTION_ASC)
+										? Sort.Direction.ASC
+										: Sort.Direction.DESC, dataTableRequestBean.getSortableColumn()));
+				
+				     List<EmployeeBean> allEmployees = employeeRepository.getAllSelectedApplicantReport(dataTableRequestBean.getSearchText(),page,propertyService.getAppProperty(GlobalConstant.SELECTED_APPLICANT_STATUS));
+					//@Param("column") String column,dataTableRequestBean.getSortableColumn(),
+					long count = employeeRepository.getAllSelectedApplicantReportCount(dataTableRequestBean.getSearchText(),propertyService.getAppProperty(GlobalConstant.SELECTED_APPLICANT_STATUS));
+					long filteredSize=0;
+					if(dataTableRequestBean.getSearchText() != null && !dataTableRequestBean.getSearchText().trim().equals("") ) {
+					 filteredSize=allEmployees.size();
+					 }else {
+					 filteredSize=count;
+					 }
+					return ResponseBean.builder().status(Status.SUCCESS)
+							.response(DataTableResponseBean.<EmployeeBean>builder().draw(dataTableRequestBean.getDraw())
+									.recordsTotal((int) count).recordsFiltered(filteredSize)
+									.data(allEmployees).build())
+							.build();
+					
+			}
+			return ResponseBean.builder().status(Status.FAIL).message(MessageConstant.RECORD_NOT_FOUND).build();
+
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseBean.builder().status(Status.FAIL).message(MessageConstant.SOMETHING_WENT_WRONG).build();
+		}
+
+	}
+	
 
 }

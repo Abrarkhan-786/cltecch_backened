@@ -1,12 +1,16 @@
 com\cltech\hrms\bean\ResponseBean$ResponseBeanBuilder.class
 com\cltech\hrms\bean\Address.class
 com\cltech\hrms\repository\PostRepository.class
+com\cltech\hrms\service\GroupMasterSerivce.class
 com\cltech\hrms\bean\Language.class
 com\cltech\hrms\constant\GlobalConstant.class
 com\cltech\hrms\exception\ResourceEmptyException.class
+com\cltech\hrms\repository\CustomRepository\impl\CustomGroupMasterRepositoryImpl.class
 com\cltech\hrms\repository\user\UserRepository.class
 com\cltech\hrms\bean\common\EmployeeBean.class
 com\cltech\hrms\bean\Education.class
+com\cltech\hrms\security\auditing\AuditConfig.class
+com\cltech\hrms\bean\common\AbstractAuditingEntity.class
 com\cltech\hrms\bean\Skill.class
 com\cltech\hrms\service\user\DepartmentService.class
 com\cltech\hrms\bean\common\PostBean.class
@@ -23,6 +27,7 @@ com\cltech\hrms\service\user\impl\RoleServiceImpl.class
 com\cltech\hrms\utility\CommonUtility.class
 com\cltech\hrms\service\user\RoleService.class
 com\cltech\hrms\bean\common\DepartmentBean$DepartmentBeanBuilder.class
+com\cltech\hrms\security\auditing\AuditorAwareImpl.class
 com\cltech\hrms\utility\dataTable\Search.class
 com\cltech\hrms\repository\SkillRepository.class
 com\cltech\hrms\service\EmployeeService.class
@@ -39,10 +44,12 @@ com\cltech\hrms\service\user\impl\DepartmentServiceImpl.class
 com\cltech\hrms\bean\SocialMedialLinks.class
 com\cltech\hrms\bean\EmployeeDetail.class
 com\cltech\hrms\bean\user\Role.class
+com\cltech\hrms\service\impl\GroupMasterSerivceImpl.class
 com\cltech\hrms\constant\MessageConstant.class
 com\cltech\hrms\bean\common\GridDataResponseBean.class
 com\cltech\hrms\exception\ResourceNoCreatedException.class
 com\cltech\hrms\exception\RestExceptionHandler.class
+com\cltech\hrms\repository\CustomRepository\CustomGroupMasterRepository.class
 com\cltech\hrms\constant\Status.class
 com\cltech\hrms\HrmsApplication.class
 com\cltech\hrms\bean\Project.class
@@ -53,6 +60,7 @@ com\cltech\hrms\service\impl\EmployeeServiceImpl.class
 com\cltech\hrms\bean\common\DataTableResponseBean.class
 com\cltech\hrms\bean\common\PostBean$PostBeanBuilder.class
 com\cltech\hrms\bean\Experience.class
+com\cltech\hrms\bean\GroupMaster.class
 com\cltech\hrms\repository\user\DepartmentRepository.class
 com\cltech\hrms\bean\common\GridDatatableRequestBean.class
 com\cltech\hrms\repository\user\RoleRepository.class
@@ -60,6 +68,7 @@ com\cltech\hrms\utility\FilterCondition.class
 com\cltech\hrms\bean\user\Department.class
 com\cltech\hrms\config\SecurityConfig.class
 com\cltech\hrms\config\SwaggerConfig.class
+com\cltech\hrms\repository\GroupMasterRepository.class
 com\cltech\hrms\repository\LanguageRepository.class
 com\cltech\hrms\service\impl\LanguageSerivceImpl.class
 com\cltech\hrms\service\user\impl\UserServiceImpl.class

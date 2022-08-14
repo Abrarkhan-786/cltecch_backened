@@ -1,7 +1,5 @@
 package com.cltech.hrms.service.common.impl;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,6 +15,5 @@ public class BaseServiceImpl implements BaseService{
 	@Qualifier("propertyServiceImpl")
 	protected PropertyService propertyService;
 
-	 @Autowired
-	 protected HttpSession session;
+	
 }

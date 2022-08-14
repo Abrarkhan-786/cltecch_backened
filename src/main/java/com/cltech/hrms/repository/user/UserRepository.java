@@ -50,5 +50,28 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			)
   
 	   public long getAllRecruitersCount(@Param("query") String query, @Param("roleId") Long roleId);
+    
+    
+    @Query(
+			 "SELECT "
+			+ "count(u) "
+			+ "FROM  #{#entityName} u "
+			+ "WHERE "
+			+"u.roleId=:roleId"
+			)
 
+	   public long getRecruitersCount( @Param("roleId") Long roleId);
+
+    
+    @Query( value=
+			 "SELECT "
+			+ "count(*) "
+			+ "FROM  user u "
+			+ "WHERE "
+			+"u.deparment_ids IS NOT NULL",nativeQuery = true
+			)
+
+	   public long getRecruitersCountHavingTaskCount();
+    
+       public long findByDeparmentIdsNotNull();
 }

@@ -13,11 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.cltech.hrms.bean.common.AbstractAuditingEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,61 +24,68 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Employee implements Serializable {
+public class Employee extends AbstractAuditingEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	private Long id;
 
 	@Column
-	String carrierObjective; // allowed character 256 or 512
+	private String carrierObjective; // allowed character 256 or 512
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeDetailId")
-	EmployeeDetail employeeDetail;
+	private EmployeeDetail employeeDetail;
 
 	@OneToMany(cascade = CascadeType.ALL )
 	@JoinColumn(name="employeeId")
-	List<Skill> skills;
+	private List<Skill> skills;
 
 	@OneToMany(cascade = CascadeType.ALL )
 	@JoinColumn(name="employeeId")
-	List<Experience> experiences;
+	private List<Experience> experiences;
 
 	@OneToMany(cascade = CascadeType.ALL )
 	@JoinColumn(name="employeeId")
-	List<Education> educations;
+	private List<Education> educations;
 
 	
 	@OneToMany(cascade = CascadeType.ALL )
 	@JoinColumn(name="employeeId")
-	List<Project> projects;
+	private List<Project> projects;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="employeeId")
-	List<Language> languages;
+	private List<Language> languages;
 
 	@Column
 	@JsonProperty
-	boolean isWorking;
+	private boolean isWorking;
 	
 	@Column
 	@JsonProperty
-	boolean isFresher;
+	private boolean isFresher;
 	
-	double currentCTC;
-	double expectedCTC;
-	String preferedLocation; // optional
-	String certifications;
-	String hobbies;
-	String totalSkill;
-	double totalExperience;
+	private double currentCTC;
+	private double expectedCTC;
+	private String preferedLocation; // optional
+	private String certifications;
+	private String hobbies;
+	private String totalSkill;
+	private double totalExperience;
+	private String lookingFor;
 
 	@OneToOne(cascade = CascadeType.ALL )
 	@JoinColumn(name="socialMediaLinkId")
-	SocialMedialLinks socialMediaLinks;
+	private SocialMedialLinks socialMediaLinks;
 	
 	@OneToMany(cascade = CascadeType.ALL )
 	@JoinColumn(name="employeeId")
-	List<Post> posts;
+	private List<Post> posts;
+	
+	private String resumeStatusCode;
+	private String resumeStatusValue;
 
 }

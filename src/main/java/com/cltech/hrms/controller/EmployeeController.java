@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,7 +40,6 @@ public class EmployeeController {
 	@PostMapping(path = "/getAllEmployee")
 	public ResponseBean getAllEmployee(@RequestBody GridDatatableRequestBean gridDatatableRequestBean) {
 		return employeeService.getAllEmployee(gridDatatableRequestBean);
-
 	}
 	
 	@RequestMapping(value="getAllEmployees" ,method = RequestMethod.POST)
@@ -53,5 +53,20 @@ public class EmployeeController {
 		 return employeeService.getEmployeeById(id);
 	}
 
+	@PostMapping(path = "/getAllEmployeesForAdmin")
+	public ResponseBean getAllEmployeesForAdmin(@RequestBody DataTableRequestBean dataTableRequestBean) {
+		return employeeService.getAllEmployeesForAdmin(dataTableRequestBean);
+	}
+	
+	@PostMapping(path = "/updateEmployeeResumeStatus")
+	public ResponseBean updateEmployeeResumeStatus(@RequestBody Employee employee) {
+		return employeeService.updateEmployeeResumeStatus(employee);
+	}
+	
+	@PostMapping(path = "/getAllSelectedApplicantReport")
+	public ResponseBean getAllSelectedApplicantReport(@RequestBody DataTableRequestBean dataTableRequestBean) {
+		return employeeService.getAllSelectedApplicantReport(dataTableRequestBean);
+	}
+	
 	
 }

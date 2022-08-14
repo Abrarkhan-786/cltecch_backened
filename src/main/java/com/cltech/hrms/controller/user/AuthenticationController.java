@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -65,4 +66,35 @@ public class AuthenticationController {
 		return roleService.getRole  ();
 		
 	}
+	
+	@GetMapping("/findByUsername")
+	@ResponseBody
+    public ResponseBean findByUsername(@RequestParam String email) {
+        return userService.findByUsername(email);
+    }
+	
+	@PostMapping("/getAllRegisterUser")
+	public ResponseBean getAllRegisterUser(@RequestBody DataTableRequestBean dataTableRequestBean) {
+		return userService.getAllRegisterUser  (dataTableRequestBean);
+		
+	}
+	
+	@PostMapping("/updateProfile")
+	@ResponseBody
+    public ResponseBean updateProfile(@RequestBody User user) {
+        return userService.updateProfile(user);
+    }
+	
+	@PostMapping("/resetPassword")
+	@ResponseBody
+    public ResponseBean resetPassword(@RequestBody User user) {
+        return userService.resetPassword(user);
+    }
+	
+	@PostMapping("/getDashBoardData")
+	@ResponseBody
+    public ResponseBean getDashBoardData() {
+        return userService.getDashBoardData();
+    }
+	
 }

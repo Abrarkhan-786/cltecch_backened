@@ -17,7 +17,11 @@ public interface EmployeeService {
 
 	public ResponseBean getAllEmployees(DataTableRequestBean dataTableRequestBean);
 
+	public ResponseBean getAllEmployeesForAdmin(DataTableRequestBean dataTableRequestBean);
 
+	public ResponseBean updateEmployeeResumeStatus(Employee employee);
+
+	ResponseBean getAllSelectedApplicantReport(DataTableRequestBean dataTableRequestBean);
 
 
 }
