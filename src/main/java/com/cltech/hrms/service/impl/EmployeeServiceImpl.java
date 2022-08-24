@@ -364,6 +364,12 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 		}
 
 	}
+
+	@Override
+	public ResponseBean saveBulkEmployee(List<Employee> employees) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

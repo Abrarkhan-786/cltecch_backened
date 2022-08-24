@@ -1,5 +1,7 @@
 package com.cltech.hrms.service;
 
+import java.util.List;
+
 import com.cltech.hrms.bean.Employee;
 import com.cltech.hrms.bean.ResponseBean;
 import com.cltech.hrms.bean.common.DataTableRequestBean;
@@ -22,6 +24,6 @@ public interface EmployeeService {
 	public ResponseBean updateEmployeeResumeStatus(Employee employee);
 
 	ResponseBean getAllSelectedApplicantReport(DataTableRequestBean dataTableRequestBean);
-
+	public ResponseBean saveBulkEmployee(List<Employee> employees);
 
 }
