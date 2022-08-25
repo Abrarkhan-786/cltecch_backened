@@ -16,4 +16,4 @@ phases:
     - mv target/hrms-0.0.1-SNAPSHOT.war ./
 artifacts:
   files:
-    -hrms-0.0.1-SNAPSHOT.war
+    - hrms-0.0.1-SNAPSHOT.war
