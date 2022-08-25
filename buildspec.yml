@@ -1,19 +1,20 @@
-# This file controls the AWS CodeBuild
-
 version: 0.2
 phases:
+  install:
+    runtime-versions:
+      java: corretto8
   pre_build:
     commands:
-    - echo "Entered the pre-build phase"
+    - echo In the pre_build phase...
   build:
     commands:
-    - echo "Entered build phase"
-    - mvn clean
-    - mvn install
+    - echo Build started on `date`
   post_build:
     commands:
-    - echo "Entered the post-build phase"
+    - echo Build completed on `date`
+    - mvn package
+    - mv target/hrms-0.0.1-SNAPSHOT.war hrms-0.0.1-SNAPSHOT.war
 artifacts:
   files:
-    - target/hrms-0.0.1-SNAPSHOT.war
-    - .ebextensions/**/*
+  - hrms-0.0.1-SNAPSHOT.war
+  - .ebextensions/**/*
