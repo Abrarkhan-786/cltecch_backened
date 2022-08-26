@@ -15,4 +15,3 @@ artifacts:
   files:
   - hrms-0.0.1-SNAPSHOT.war
   discard-paths: yes
-  
