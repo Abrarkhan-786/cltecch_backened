@@ -78,6 +78,7 @@ public class GlobalConstant {
 	public static final String ADMIN_RETURN_URL="admin.return.url";
 	public static final String GROUPNAME_RESUME_STATUS="groupname.resume.status";
 	public static final String SELECTED_APPLICANT_STATUS="selected.applicant.status";
+	public static final String GROUPNAME_SECURITY_QUESTION="groupname.security.question";
 	
 
 }

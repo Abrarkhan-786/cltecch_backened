@@ -40,7 +40,7 @@ import com.cltech.hrms.service.EmployeeService;
 import com.cltech.hrms.service.common.impl.BaseServiceImpl;
 import com.cltech.hrms.utility.CommonUtility;
 
-@Service
+@Service("employeeServiceImpl")
 public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeService {
 	private static Logger LOGGER = LogManager.getLogger(EmployeeServiceImpl.class);
 
@@ -370,6 +370,28 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	 @Override
+	public ResponseBean getApplicant(Employee employee) {
+			try {
+				
+				if(employee.getEmployeeDetail().getEmail()!=null && !"".equals(employee.getEmployeeDetail().getEmail()) ) {
+					List<EmployeeBean> employees = employeeRepository.getApplicant(employee.getEmployeeDetail().getEmail());
+					return ResponseBean.builder().status(Status.SUCCESS)
+							.response(employees)
+							.build();
+				}
+				return ResponseBean.builder().status(Status.FAIL)
+						.message(MessageConstant.RECORD_NOT_FOUND)
+						.build();
+				
+			} catch (Exception e) {
+				LOGGER.error(e.getMessage(), e);
+				return ResponseBean.builder().status(Status.FAIL).message(MessageConstant.SOMETHING_WENT_WRONG).build();
+
+			}
+		}
 	
 
 }

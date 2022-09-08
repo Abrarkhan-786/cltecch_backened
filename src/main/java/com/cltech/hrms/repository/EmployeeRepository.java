@@ -225,6 +225,26 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 			+ " e.resumeStatusCode=:status "
 			)
 	    public long getSelectedApplicantCount(@Param("status") String status);
+	
+	
+	@Query(
+			  "SELECT "
+			+ "new com.cltech.hrms.bean.common.EmployeeBean("
+			+ "e.id,e.totalExperience,e.totalSkill, e.lookingFor, "
+			+ "concat(d.firstName, ' ',d.lastName) as name, "
+			+ "d.email  as email, d.phone as phone,p.departmentName,e.resumeStatusCode,e.resumeStatusValue "
+			+ ") "
+			+ "FROM  Employee e "
+			+ "JOIN e.posts p "
+			+ "JOIN e.employeeDetail d "
+			+ "WHERE "
+			+ "d.email=:email "
+			+ "OR "
+			+ "d.alternateEmail=:email "
+			+ "Order BY e.createdDt "
+			+ "DESC"
+			)
+	       public List<EmployeeBean> getApplicant(String email);
 
 	
 }

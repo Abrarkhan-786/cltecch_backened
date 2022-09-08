@@ -3,6 +3,7 @@ package com.cltech.hrms.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import com.cltech.hrms.bean.Employee;
 import com.cltech.hrms.bean.ResponseBean;
 import com.cltech.hrms.bean.common.DataTableRequestBean;
 import com.cltech.hrms.bean.common.GridDatatableRequestBean;
-import com.cltech.hrms.service.impl.EmployeeServiceImpl;
+import com.cltech.hrms.service.EmployeeService;
 
 @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
 @RestController
@@ -25,7 +26,8 @@ import com.cltech.hrms.service.impl.EmployeeServiceImpl;
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeServiceImpl employeeService;
+	@Qualifier("employeeServiceImpl")
+	private EmployeeService employeeService;
 
 	@PostMapping(path = "saveEmployee")
 	@ResponseBody
@@ -70,5 +72,9 @@ public class EmployeeController {
 		return employeeService.getAllSelectedApplicantReport(dataTableRequestBean);
 	}
 	
-	
+	@PostMapping(path = "getApplicant")
+	@ResponseBody
+	public ResponseBean getApplicant(@RequestBody Employee employee) {
+	     return employeeService.getApplicant(employee);
+	}
 }

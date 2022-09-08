@@ -9,13 +9,13 @@ phases:
   build:
     commands:
     - echo Build started on `date`
-    - mvn test 
+    - mvn test
   post_build:
     commands:
     - echo Build completed on `date`
     - mvn package
+    - mv target/hrms-0.0.1-SNAPSHOT.war hrms-0.0.1-SNAPSHOT.war
 artifacts:
   files:
-  - target/hrms-0.0.1-SNAPSHOT.war
-  - appspec.yml
+  - hrms-0.0.1-SNAPSHOT.war
   discard-paths: yes
