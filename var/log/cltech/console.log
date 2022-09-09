@@ -1660,3 +1660,31 @@ org.springframework.transaction.UnexpectedRollbackException: Transaction silentl
 2022-09-08 18:40:51.136  INFO DESKTOP-N3LRL61 --- o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8082 (http) with context path '/cltech'
 2022-09-08 18:40:51.186  INFO DESKTOP-N3LRL61 --- c.c.h.HrmsApplication                    : Started HrmsApplication in 2.435 seconds (JVM running for 636.141)
 2022-09-08 18:40:51.191  INFO DESKTOP-N3LRL61 --- .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-09-08 18:42:07.561  INFO DESKTOP-N3LRL61 --- j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-08 18:42:07.563  INFO DESKTOP-N3LRL61 --- c.z.h.HikariDataSource                   : HikariPool-3 - Shutdown initiated...
+2022-09-08 18:42:07.582  INFO DESKTOP-N3LRL61 --- c.z.h.HikariDataSource                   : HikariPool-3 - Shutdown completed.
+2022-09-08 18:42:08.015  INFO DESKTOP-N3LRL61 --- c.c.h.HrmsApplication                    : Starting HrmsApplication using Java 1.8.0_201 on DESKTOP-N3LRL61 with PID 16856 (D:\dev\cltech-backened\target\classes started by HP in D:\dev\cltech-backened)
+2022-09-08 18:42:08.016  INFO DESKTOP-N3LRL61 --- c.c.h.HrmsApplication                    : The following 1 profile is active: "dev"
+2022-09-08 18:42:08.327  INFO DESKTOP-N3LRL61 --- .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-08 18:42:08.400  INFO DESKTOP-N3LRL61 --- .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 10 JPA repository interfaces.
+2022-09-08 18:42:08.556  INFO DESKTOP-N3LRL61 --- trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f8bf6801] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-09-08 18:42:08.562  INFO DESKTOP-N3LRL61 --- .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-09-08 18:42:08.712  INFO DESKTOP-N3LRL61 --- o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8082 (http)
+2022-09-08 18:42:08.712  INFO DESKTOP-N3LRL61 --- o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8082"]
+2022-09-08 18:42:08.713  INFO DESKTOP-N3LRL61 --- o.a.c.c.StandardService                  : Starting service [Tomcat]
+2022-09-08 18:42:08.714  INFO DESKTOP-N3LRL61 --- o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-09-08 18:42:08.733  INFO DESKTOP-N3LRL61 --- o.a.c.c.C.[.[.[/cltech]                  : Initializing Spring embedded WebApplicationContext
+2022-09-08 18:42:08.733  INFO DESKTOP-N3LRL61 --- w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 711 ms
+2022-09-08 18:42:08.797  INFO DESKTOP-N3LRL61 --- o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-08 18:42:08.804  INFO DESKTOP-N3LRL61 --- c.z.h.HikariDataSource                   : HikariPool-4 - Starting...
+2022-09-08 18:42:08.823  INFO DESKTOP-N3LRL61 --- c.z.h.HikariDataSource                   : HikariPool-4 - Start completed.
+2022-09-08 18:42:08.824  INFO DESKTOP-N3LRL61 --- o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-09-08 18:42:09.126  INFO DESKTOP-N3LRL61 --- o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-08 18:42:09.126  INFO DESKTOP-N3LRL61 --- j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-08 18:42:09.860  WARN DESKTOP-N3LRL61 --- JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-08 18:42:10.173  INFO DESKTOP-N3LRL61 --- o.s.s.w.DefaultSecurityFilterChain       : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@27a4a0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@268c753c, org.springframework.security.web.context.SecurityContextPersistenceFilter@1be8e4e, org.springframework.security.web.header.HeaderWriterFilter@43e259fe, org.springframework.web.filter.CorsFilter@7d87a2a2, org.springframework.security.web.authentication.logout.LogoutFilter@7cfc025c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@31ce2608, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6838ccd6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@39c45586, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@311cef88, org.springframework.security.web.session.SessionManagementFilter@34a09238, org.springframework.security.web.access.ExceptionTranslationFilter@70833d82, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b2e8f76]
+2022-09-08 18:42:10.461  INFO DESKTOP-N3LRL61 --- o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-09-08 18:42:10.475  INFO DESKTOP-N3LRL61 --- o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8082"]
+2022-09-08 18:42:10.479  INFO DESKTOP-N3LRL61 --- o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8082 (http) with context path '/cltech'
+2022-09-08 18:42:10.491  INFO DESKTOP-N3LRL61 --- c.c.h.HrmsApplication                    : Started HrmsApplication in 2.543 seconds (JVM running for 715.446)
+2022-09-08 18:42:10.495  INFO DESKTOP-N3LRL61 --- .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
